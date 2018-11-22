@@ -32,6 +32,6 @@ section[size="A5"][layout="landscape"] {
 @media print {
   body, section {
     margin: 0;
-    box-shadow: 0;
+    box-shadow: none;
   }
 }
