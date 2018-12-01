@@ -36,7 +36,7 @@
 
         <form action="post.html" method="post" id="commentform" class="comment-form">
           <div class="comment-form-title">
-            <input type="text" placeholder="Post title&hellip;">
+            <input type="text" placeholder="Post title&hellip;" (change)="this.editor.updateSlug($event.target.value)">
           </div>
 
           <div>
@@ -70,7 +70,9 @@
             </ng-container>
 
             <ng-container *ngIf="block.type == 'image'">
-              <img *ngIf="!block.focus" src="{{block.url}}" alt="{{block.alt}}" (click)="this.editor.setFocus(index)">
+              <p *ngIf="!block.focus">
+                <img src="{{block.url}}" alt="{{block.alt}}" (click)="this.editor.setFocus(index)">
+              </p>
               <div *ngIf="block.focus">
                 <p>
                   <input type="url" placeholder="URL&hellip;" (change)="block.url = $event.target.value" value="{{block.url}}">
@@ -101,7 +103,7 @@
           <textarea disabled="disabled" rows="5" (change)="this.editor.excerpt.text = $event.target.value">{{this.editor.excerpt.text}}</textarea>
 
           <div class="comment-form-url">
-            <input id="url" name="url" type="url" placeholder="URL&hellip;" disabled="disabled">
+            <input id="url" name="url" type="url" placeholder="URL&hellip;" disabled="disabled" value="{{this.editor.slug}}">
           </div>
         </form>
       </div>
