@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
+import { APP_BASE_HREF } from "@angular/common";
 import { PostComponent } from "./post/post.component";
 import { BlogComponent } from "./blog/blog.component";
-import { RouterModule, Routes } from "@angular/router";
-
-// import { CommonModule } from '@angular/common';
+import { Route, RouterModule, Routes, UrlSegment, UrlSegmentGroup } from "@angular/router";
 
 const routes: Routes = [
   {
@@ -11,9 +10,13 @@ const routes: Routes = [
     component: BlogComponent,
   },
   {
+    path: 'posts',
+    component: BlogComponent,
+  },
+  {
     path: ':slug',
     component: PostComponent,
-  },
+  }
 ];
 
 @NgModule({
@@ -23,6 +26,7 @@ const routes: Routes = [
   exports: [
     RouterModule
   ],
-  declarations: []
+  declarations: [],
+  providers: [{provide: APP_BASE_HREF, useValue : '/' }]
 })
 export class AppRoutingModule { }
